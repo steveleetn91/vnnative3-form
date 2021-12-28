@@ -4,6 +4,7 @@ import Vnnative3formSecure from "../secure/VnNative3FormSecure";
 export interface VnNative3FormInputInterface {
     input: HTMLInputElement | null | undefined
     subscribe(): HTMLInputElement | null | undefined
+    setData(data : string | number) : void 
     stringValue() : string 
     numberValue() : number
 }
@@ -19,6 +20,9 @@ export default class VnNative3FormInput implements VnNative3FormInputInterface {
     }
     subscribe(): HTMLInputElement | null | undefined { 
         return this.input;
+    }
+    setData(data : string | number) : void {
+        this.input!.value = String(data);
     }
     stringValue() : string {
         try {
