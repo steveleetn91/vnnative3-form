@@ -14,6 +14,9 @@ var VnNative3FormInput = /** @class */ (function () {
     VnNative3FormInput.prototype.subscribe = function () {
         return this.input;
     };
+    VnNative3FormInput.prototype.setData = function (data) {
+        this.input.value = String(data);
+    };
     VnNative3FormInput.prototype.stringValue = function () {
         try {
             return (new VnNative3FormSecure_1.default(this.input.value)).data;
