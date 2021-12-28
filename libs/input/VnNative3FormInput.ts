@@ -1,0 +1,39 @@
+import VnNative3ConsoleCore from "vnnative3-console/dist/console";
+import Vnnative3formSecure from "../secure/VnNative3FormSecure";
+
+export interface VnNative3FormInputInterface {
+    input: HTMLInputElement | null | undefined
+    subscribe(): HTMLInputElement | null | undefined
+    stringValue() : string 
+    numberValue() : number
+}
+
+export default class VnNative3FormInput implements VnNative3FormInputInterface {
+    input: HTMLInputElement | null | undefined
+    constructor(input_id : string){
+        try {
+            this.input = document.getElementById(input_id) as HTMLInputElement;
+        }catch(e : any) {
+            (new VnNative3ConsoleCore).error(e.toString());
+        }
+    }
+    subscribe(): HTMLInputElement | null | undefined { 
+        return this.input;
+    }
+    stringValue() : string {
+        try {
+            return (new Vnnative3formSecure(this.input!.value)).data;
+        }catch(e : any) {
+            (new VnNative3ConsoleCore).error(e.toString());
+            return "";
+        }
+    }
+    numberValue() : number {
+        try {
+            return Number(this.input!.value);
+        }catch(e : any) {
+            (new VnNative3ConsoleCore).error(e.toString());
+            return 0;
+        }
+    }
+}
